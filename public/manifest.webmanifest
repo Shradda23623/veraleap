@@ -1,0 +1,41 @@
+{
+  "name": "VeraLeap — Rental Scam Prevention",
+  "short_name": "VeraLeap",
+  "description": "Verify rental listings and check landlord credibility before you commit.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "lang": "en-IN",
+  "categories": ["real-estate", "lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Browse properties",
+      "short_name": "Properties",
+      "url": "/properties",
+      "description": "Browse verified rental listings"
+    },
+    {
+      "name": "Find brokers",
+      "short_name": "Brokers",
+      "url": "/brokers",
+      "description": "Find trusted rental brokers"
+    },
+    {
+      "name": "My dashboard",
+      "short_name": "Dashboard",
+      "url": "/dashboard",
+      "description": "Saved listings, messages, and reports"
+    }
+  ]
+}

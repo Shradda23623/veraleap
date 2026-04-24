@@ -1,0 +1,2 @@
+ALTER TABLE properties DROP CONSTRAINT properties_type_check;
+ALTER TABLE properties ADD CONSTRAINT properties_type_check CHECK (type = ANY (ARRAY['apartment','house','villa','pg','studio','commercial']));
