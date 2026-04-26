@@ -15,7 +15,7 @@
 [![Tailwind](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-Postgres-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/)
 
-**[Live demo](https://veraleap.vercel.app)** · **[Watch the 90-second walkthrough](#demo)** · **[Architecture](#architecture)** · **[Report a bug](https://github.com/Shradda23623/veraleap/issues)**
+**[Live demo](https://veraleap.vercel.app)** · **[Architecture](#architecture)** · **[Report a bug](https://github.com/Shradda23623/veraleap/issues)**
 
 </div>
 
@@ -23,13 +23,7 @@
 
 ![VeraLeap hero demo](./docs/screenshots/hero.png)
 
-## Demo
-
-> **Replace the link below with your Loom URL after recording.** See [`docs/DEMO_SCRIPT.md`](./docs/DEMO_SCRIPT.md) for a 90-second script.
-
-[![Watch the 90-second walkthrough](./docs/screenshots/hero.png)](https://www.loom.com/share/REPLACE_WITH_YOUR_VIDEO_ID)
-
-### Try it yourself
+## Try it yourself
 
 The live demo is seeded with these accounts. Log in with any of them on [veraleap.vercel.app](https://veraleap.vercel.app):
 

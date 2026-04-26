@@ -14,7 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Architecture diagram (`docs/architecture.svg`) covering client, Supabase, and external services.
-- Demo video script (`docs/DEMO_SCRIPT.md`) for recording a 90-second walkthrough.
 - GitHub Actions CI pipeline: lint, typecheck, test, and build on every PR.
 - Vercel deploy config with security headers (HSTS, X-Frame-Options, Permissions-Policy) and asset caching.
 - Sentry error tracking integration (`src/lib/sentry.ts`) — no-ops without a DSN.
