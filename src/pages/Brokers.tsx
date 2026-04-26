@@ -1,13 +1,12 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { MapPin, BadgeCheck, Phone, Filter, MessageCircle, Map as MapIcon, List, LayoutGrid } from "lucide-react";
+import { MapPin, BadgeCheck, Phone, Filter, MessageCircle, List, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
-import MapView, { type MapItem } from "@/components/MapView";
 import { useSEO } from "@/hooks/useSEO";
 
 const CITIES_LIST = ["Mumbai", "Delhi", "Bangalore", "Pune", "Hyderabad", "Chennai", "Kolkata", "Jaipur", "Chandigarh", "Jalandhar"];
@@ -16,7 +15,7 @@ const Brokers = () => {
   useSEO({ title: "Trusted brokers", description: "Discover verified real estate brokers in your city. Read reviews and chat directly with trusted professionals." });
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCity, setSelectedCity] = useState(searchParams.get("city") || "");
-  const [view, setView] = useState<"list" | "split" | "map">("split");
+  const [view, setView] = useState<"list" | "grid">("grid");
   const { isLoggedIn } = useAuth();
 
   const { data: brokers = [], isLoading } = useQuery({
@@ -50,9 +49,8 @@ const Brokers = () => {
         <div className="ml-auto flex items-center gap-2">
           <span className="text-sm text-muted-foreground hidden sm:inline">{brokers.length} found</span>
           <div className="flex rounded-lg border border-input overflow-hidden">
+            <button onClick={() => setView("grid")} className={`p-2 ${view === "grid" ? "bg-primary text-primary-foreground" : "bg-background"}`} aria-label="Grid view"><LayoutGrid className="w-4 h-4" /></button>
             <button onClick={() => setView("list")} className={`p-2 ${view === "list" ? "bg-primary text-primary-foreground" : "bg-background"}`} aria-label="List view"><List className="w-4 h-4" /></button>
-            <button onClick={() => setView("split")} className={`p-2 ${view === "split" ? "bg-primary text-primary-foreground" : "bg-background"}`} aria-label="Split view"><LayoutGrid className="w-4 h-4" /></button>
-            <button onClick={() => setView("map")} className={`p-2 ${view === "map" ? "bg-primary text-primary-foreground" : "bg-background"}`} aria-label="Map view"><MapIcon className="w-4 h-4" /></button>
           </div>
         </div>
       </div>
@@ -86,23 +84,10 @@ const Brokers = () => {
   );
 };
 
-const BrokersContent = ({ brokers, view, selectedCity, isLoggedIn }: { brokers: any[]; view: "list" | "split" | "map"; selectedCity: string; isLoggedIn: boolean }) => {
-  const mapItems: MapItem[] = useMemo(
-    () =>
-      brokers.map((b) => ({
-        id: b.id,
-        title: b.username,
-        city: b.city,
-        location: b.location,
-        image_url: b.avatar_url,
-        href: `/chat?to=${b.user_id}&name=${b.username}`,
-        variant: "broker",
-      })),
-    [brokers]
-  );
+const BrokersContent = ({ brokers, view, selectedCity, isLoggedIn }: { brokers: any[]; view: "list" | "grid"; selectedCity: string; isLoggedIn: boolean }) => {
 
   const grid = (
-    <div className={`grid gap-6 ${view === "split" ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
+    <div className={`grid gap-6 ${view === "list" ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
       {brokers.map((b) => (
         <div key={b.id} className="bg-card rounded-2xl p-6 shadow-card hover:shadow-elevated transition-all">
           <div className="flex items-start gap-4 mb-4">
@@ -147,16 +132,7 @@ const BrokersContent = ({ brokers, view, selectedCity, isLoggedIn }: { brokers: 
     </div>
   );
 
-  if (view === "list") return grid;
-  if (view === "map") return <MapView items={mapItems} selectedCity={selectedCity} className="h-[70vh]" />;
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div className="max-h-[80vh] overflow-y-auto pr-1">{grid}</div>
-      <div className="lg:sticky lg:top-20 h-[60vh] lg:h-[80vh]">
-        <MapView items={mapItems} selectedCity={selectedCity} className="h-full" />
-      </div>
-    </div>
-  );
+  return grid;
 };
 
 export default Brokers;

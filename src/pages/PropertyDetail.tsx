@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MapPin, BadgeCheck, Bed, Bath, Maximize, MessageCircle, ArrowLeft, Share2, Calendar, Shield, CheckCircle } from "lucide-react";
+import { MapPin, BadgeCheck, Bed, Bath, Maximize, MessageCircle, ArrowLeft, Share2, Calendar, Shield, CheckCircle, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -10,7 +10,6 @@ import FavoriteButton from "@/components/FavoriteButton";
 import ReviewForm from "@/components/ReviewForm";
 import ReportButton from "@/components/ReportButton";
 import PropertyImageGallery from "@/components/PropertyImageGallery";
-import PropertyMap from "@/components/PropertyMap";
 import RequestVisitDialog from "@/components/RequestVisitDialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSEO } from "@/hooks/useSEO";
@@ -198,15 +197,28 @@ const PropertyDetail = () => {
 
             <div className="bg-card rounded-xl p-6 shadow-card">
               <h2 className="font-display font-bold text-lg mb-4">Location</h2>
-              <PropertyMap
-                latitude={property.latitude}
-                longitude={property.longitude}
-                title={property.title}
-                city={property.city}
-                location={property.location}
-                propertyId={property.id}
-                height={320}
-              />
+              <div className="flex items-start gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium">{property.location}</p>
+                  <p className="text-sm text-muted-foreground">{property.city}</p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Exact address shared after visit approval to keep listings safe.
+                  </p>
+                </div>
+              </div>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([property.location, property.city].filter(Boolean).join(", "))}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block"
+              >
+                <Button variant="outline" size="sm" className="gap-2">
+                  <ExternalLink className="w-3.5 h-3.5" /> Open in Google Maps
+                </Button>
+              </a>
             </div>
 
             <div className="bg-card rounded-xl p-6 shadow-card">

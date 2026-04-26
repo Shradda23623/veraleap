@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import AmenitiesSelector from "@/components/AmenitiesSelector";
-import LocationPicker from "@/components/LocationPicker";
 import { useSEO } from "@/hooks/useSEO";
 
 const propertySchema = z.object({
@@ -359,26 +358,6 @@ const EditProperty = () => {
             <FormField control={form.control} name="area" render={({ field }) => (
               <FormItem><FormLabel>Area (sqft)</FormLabel><FormControl><Input type="number" min={0} {...field} /></FormControl><FormMessage /></FormItem>
             )} />
-          </div>
-
-          <div>
-            <label className="text-sm font-medium mb-2 block">Pin the exact location on the map</label>
-            <p className="text-xs text-muted-foreground mb-3">
-              Search, click, or drag the pin to adjust the saved coordinates.
-            </p>
-            <LocationPicker
-              value={coords}
-              onChange={(loc) => {
-                setCoords({ lat: loc.lat, lng: loc.lng });
-                if (loc.address && !form.getValues("location")) {
-                  form.setValue("location", loc.address.slice(0, 300), { shouldValidate: true });
-                }
-                if (loc.city && !form.getValues("city")) {
-                  form.setValue("city", loc.city, { shouldValidate: true });
-                }
-              }}
-              defaultCity={form.watch("city")}
-            />
           </div>
 
           <div>

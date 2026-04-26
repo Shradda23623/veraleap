@@ -14,7 +14,6 @@ import { ArrowLeft, Loader2, Upload, X } from "lucide-react";
 import { useState, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import AmenitiesSelector from "@/components/AmenitiesSelector";
-import LocationPicker from "@/components/LocationPicker";
 import { useSEO } from "@/hooks/useSEO";
 
 const propertySchema = z.object({
@@ -325,26 +324,6 @@ const AddProperty = () => {
                 <FormMessage />
               </FormItem>
             )} />
-          </div>
-
-          <div>
-            <label className="text-sm font-medium mb-2 block">Pin the exact location on the map</label>
-            <p className="text-xs text-muted-foreground mb-3">
-              Search the address, click on the map, or drag the pin. This helps tenants and buyers find the property easily.
-            </p>
-            <LocationPicker
-              value={coords}
-              onChange={(loc) => {
-                setCoords({ lat: loc.lat, lng: loc.lng });
-                if (loc.address && !form.getValues("location")) {
-                  form.setValue("location", loc.address.slice(0, 300), { shouldValidate: true });
-                }
-                if (loc.city && !form.getValues("city")) {
-                  form.setValue("city", loc.city, { shouldValidate: true });
-                }
-              }}
-              defaultCity={form.watch("city")}
-            />
           </div>
 
           <div>

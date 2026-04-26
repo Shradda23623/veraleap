@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="760" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">VeraLeap — System Architecture</text>
+  <text x="600" y="62" text-anchor="middle" font-size="13" fill="#64748b">React SPA · Supabase backend · Postgres RLS · Real-time · Edge functions</text>
+
+  <!-- CLIENT TIER -->
+  <rect x="60" y="100" width="1080" height="180" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="80" y="128" font-size="12" font-weight="700" fill="#1e3a8a" letter-spacing="1.5">CLIENT (BROWSER)</text>
+
+  <!-- React App box -->
+  <rect x="90" y="148" width="280" height="110" rx="10" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="230" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a8a">React 18 + TypeScript</text>
+  <text x="230" y="192" text-anchor="middle" font-size="11" fill="#1e40af">Vite · React Router v6 · PWA</text>
+  <text x="230" y="212" text-anchor="middle" font-size="11" fill="#1e40af">Tailwind · shadcn/ui · Framer Motion</text>
+  <text x="230" y="232" text-anchor="middle" font-size="11" fill="#1e40af">TanStack Query · React Hook Form · Zod</text>
+
+  <!-- Auth guard -->
+  <rect x="400" y="148" width="220" height="110" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="510" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Auth + RBAC</text>
+  <text x="510" y="194" text-anchor="middle" font-size="11" fill="#78350f">MfaGuard (TOTP)</text>
+  <text x="510" y="212" text-anchor="middle" font-size="11" fill="#78350f">RoleGuard (4 roles)</text>
+  <text x="510" y="230" text-anchor="middle" font-size="11" fill="#78350f">tenant / owner / broker / admin</text>
+
+  <!-- Maps -->
+  <rect x="650" y="148" width="220" height="110" rx="10" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="760" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#5b21b6">Maps Layer</text>
+  <text x="760" y="194" text-anchor="middle" font-size="11" fill="#6d28d9">@vis.gl/react-google-maps</text>
+  <text x="760" y="212" text-anchor="middle" font-size="11" fill="#6d28d9">Places autocomplete</text>
+  <text x="760" y="230" text-anchor="middle" font-size="11" fill="#6d28d9">Draggable LocationPicker</text>
+
+  <!-- Observability -->
+  <rect x="900" y="148" width="220" height="110" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="1010" y="172" text-anchor="middle" font-size="14" font-weight="700" fill="#991b1b">Observability</text>
+  <text x="1010" y="194" text-anchor="middle" font-size="11" fill="#7f1d1d">Sentry — error tracking</text>
+  <text x="1010" y="212" text-anchor="middle" font-size="11" fill="#7f1d1d">PostHog — product analytics</text>
+  <text x="1010" y="230" text-anchor="middle" font-size="11" fill="#7f1d1d">Vercel Web Vitals</text>
+
+  <!-- BACKEND TIER -->
+  <rect x="60" y="320" width="780" height="380" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="80" y="348" font-size="12" font-weight="700" fill="#065f46" letter-spacing="1.5">SUPABASE BACKEND</text>
+
+  <!-- Auth -->
+  <rect x="90" y="368" width="220" height="80" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="200" y="392" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">Auth</text>
+  <text x="200" y="412" text-anchor="middle" font-size="11" fill="#047857">Email/password + OAuth</text>
+  <text x="200" y="430" text-anchor="middle" font-size="11" fill="#047857">TOTP enrollment for brokers</text>
+
+  <!-- Storage -->
+  <rect x="330" y="368" width="220" height="80" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="440" y="392" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">Storage</text>
+  <text x="440" y="412" text-anchor="middle" font-size="11" fill="#047857">Property images (multi-upload)</text>
+  <text x="440" y="430" text-anchor="middle" font-size="11" fill="#047857">Avatars · documents</text>
+
+  <!-- Realtime -->
+  <rect x="570" y="368" width="240" height="80" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="690" y="392" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">Realtime</text>
+  <text x="690" y="412" text-anchor="middle" font-size="11" fill="#047857">Notifications · visit status</text>
+  <text x="690" y="430" text-anchor="middle" font-size="11" fill="#047857">Postgres CDC streaming</text>
+
+  <!-- Postgres -->
+  <rect x="90" y="468" width="720" height="160" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="450" y="492" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">Postgres (12 tables · RLS on every table)</text>
+
+  <rect x="110" y="510" width="160" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="190" y="533" text-anchor="middle" font-size="11" fill="#047857">profiles · user_roles</text>
+  <rect x="280" y="510" width="160" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="360" y="533" text-anchor="middle" font-size="11" fill="#047857">properties · favorites</text>
+  <rect x="450" y="510" width="160" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="530" y="533" text-anchor="middle" font-size="11" fill="#047857">visits · reviews</text>
+  <rect x="620" y="510" width="180" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="710" y="533" text-anchor="middle" font-size="11" fill="#047857">notifications · reports</text>
+
+  <rect x="110" y="556" width="240" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="230" y="579" text-anchor="middle" font-size="11" fill="#047857">rate_limits (per-user · per-window)</text>
+  <rect x="360" y="556" width="220" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="470" y="579" text-anchor="middle" font-size="11" fill="#047857">has_role() SQL function</text>
+  <rect x="590" y="556" width="210" height="36" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+  <text x="695" y="579" text-anchor="middle" font-size="11" fill="#047857">Postgres triggers · RLS policies</text>
+
+  <text x="450" y="612" text-anchor="middle" font-size="10" fill="#475569" font-style="italic">No frontend can read another user's private data — security is enforced at the database boundary.</text>
+
+  <!-- Edge functions -->
+  <rect x="90" y="648" width="720" height="40" rx="8" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+  <text x="450" y="673" text-anchor="middle" font-size="12" font-weight="700" fill="#713f12">Edge Functions · get-maps-key (server-side key proxy, never ships to client)</text>
+
+  <!-- EXTERNAL TIER -->
+  <rect x="860" y="320" width="280" height="380" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="880" y="348" font-size="12" font-weight="700" fill="#7c2d12" letter-spacing="1.5">EXTERNAL SERVICES</text>
+
+  <rect x="880" y="370" width="240" height="60" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="1000" y="394" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">Google Maps Platform</text>
+  <text x="1000" y="414" text-anchor="middle" font-size="11" fill="#c2410c">Maps · Places · Geocoding</text>
+
+  <rect x="880" y="442" width="240" height="60" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="1000" y="466" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">Sentry</text>
+  <text x="1000" y="486" text-anchor="middle" font-size="11" fill="#c2410c">Error + performance monitoring</text>
+
+  <rect x="880" y="514" width="240" height="60" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="1000" y="538" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">PostHog</text>
+  <text x="1000" y="558" text-anchor="middle" font-size="11" fill="#c2410c">Product analytics + funnels</text>
+
+  <rect x="880" y="586" width="240" height="60" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="1000" y="610" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">Vercel</text>
+  <text x="1000" y="630" text-anchor="middle" font-size="11" fill="#c2410c">Hosting · CDN · Web Vitals</text>
+
+  <!-- Arrows from React -> backend services -->
+  <line x1="370" y1="200" x2="450" y2="368" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="280" y1="258" x2="200" y2="368" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="370" y1="258" x2="690" y2="368" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Maps -> Google -->
+  <line x1="870" y1="200" x2="1000" y2="370" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Observability -> Sentry / PostHog -->
+  <line x1="1010" y1="258" x2="1000" y2="442" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="1010" y1="258" x2="1000" y2="514" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Footer -->
+  <text x="600" y="734" text-anchor="middle" font-size="11" fill="#64748b">CI/CD: GitHub Actions → Vercel preview deployments on every PR · Production deploys on main</text>
+</svg>

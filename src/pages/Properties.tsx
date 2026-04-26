@@ -1,10 +1,9 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { MapPin, BadgeCheck, Bed, Bath, Maximize, Filter, Map as MapIcon, List, LayoutGrid, SlidersHorizontal, X } from "lucide-react";
+import { MapPin, BadgeCheck, Bed, Bath, Maximize, Filter, List, LayoutGrid, SlidersHorizontal, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import FavoriteButton from "@/components/FavoriteButton";
-import MapView, { type MapItem } from "@/components/MapView";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSEO } from "@/hooks/useSEO";
@@ -18,9 +17,9 @@ const Properties = () => {
   const [selectedCity, setSelectedCity] = useState(searchParams.get("city") || "");
   const [selectedType, setSelectedType] = useState("");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
-  const [view, setView] = useState<"list" | "split" | "map">(() => {
+  const [view, setView] = useState<"list" | "grid">(() => {
     const v = searchParams.get("view");
-    return v === "list" || v === "split" || v === "map" ? v : "split";
+    return v === "list" || v === "grid" ? v : "grid";
   });
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -106,9 +105,8 @@ const Properties = () => {
           <div className="ml-auto flex items-center gap-2">
             <span className="text-sm text-muted-foreground hidden sm:inline">{properties.length} found</span>
             <div className="flex rounded-lg border border-input overflow-hidden">
-              <button onClick={() => setView("list")} className={`p-2 ${view === "list" ? "bg-primary text-primary-foreground" : "bg-background"}`} title="List only" aria-label="List view"><List className="w-4 h-4" /></button>
-              <button onClick={() => setView("split")} className={`p-2 ${view === "split" ? "bg-primary text-primary-foreground" : "bg-background"}`} title="Split" aria-label="Split view"><LayoutGrid className="w-4 h-4" /></button>
-              <button onClick={() => setView("map")} className={`p-2 ${view === "map" ? "bg-primary text-primary-foreground" : "bg-background"}`} title="Map only" aria-label="Map view"><MapIcon className="w-4 h-4" /></button>
+              <button onClick={() => setView("grid")} className={`p-2 ${view === "grid" ? "bg-primary text-primary-foreground" : "bg-background"}`} title="Grid view" aria-label="Grid view"><LayoutGrid className="w-4 h-4" /></button>
+              <button onClick={() => setView("list")} className={`p-2 ${view === "list" ? "bg-primary text-primary-foreground" : "bg-background"}`} title="List view" aria-label="List view"><List className="w-4 h-4" /></button>
             </div>
           </div>
         </div>
@@ -204,26 +202,10 @@ const Properties = () => {
   );
 };
 
-const PropertiesContent = ({ properties, view, selectedCity }: { properties: any[]; view: "list" | "split" | "map"; selectedCity: string }) => {
-  const mapItems: MapItem[] = useMemo(
-    () =>
-      properties.map((p) => ({
-        id: p.id,
-        title: p.title,
-        city: p.city,
-        location: p.location,
-        image_url: p.image_url,
-        price: p.price,
-        href: `/properties/${p.id}`,
-        variant: "property",
-        latitude: p.latitude,
-        longitude: p.longitude,
-      })),
-    [properties]
-  );
+const PropertiesContent = ({ properties, view, selectedCity }: { properties: any[]; view: "list" | "grid"; selectedCity: string }) => {
 
   const grid = (
-    <div className={`grid gap-6 ${view === "split" ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"}`}>
+    <div className={`grid gap-6 ${view === "list" ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"}`}>
       {properties.map((p) => (
         <Link key={p.id} to={`/properties/${p.id}`} className="group">
           <div className="bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-elevated transition-all">
@@ -259,16 +241,7 @@ const PropertiesContent = ({ properties, view, selectedCity }: { properties: any
     </div>
   );
 
-  if (view === "list") return grid;
-  if (view === "map") return <MapView items={mapItems} selectedCity={selectedCity} className="h-[70vh]" />;
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div className="max-h-[80vh] overflow-y-auto pr-1">{grid}</div>
-      <div className="lg:sticky lg:top-20 h-[60vh] lg:h-[80vh]">
-        <MapView items={mapItems} selectedCity={selectedCity} className="h-full" />
-      </div>
-    </div>
-  );
+  return grid;
 };
 
 export default Properties;
