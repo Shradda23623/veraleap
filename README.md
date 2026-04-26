@@ -77,32 +77,57 @@ Built end-to-end as a portfolio project to demonstrate production-grade thinking
 
 ## Screenshots
 
-> **To contributors / reviewers:** drop PNG or JPG files into `docs/screenshots/` with the filenames below and they'll render automatically.
+### The landing page
 
 <table>
   <tr>
-    <td width="50%"><img src="./docs/screenshots/home.png" alt="Home page hero with city + area search" /></td>
-    <td width="50%"><img src="./docs/screenshots/properties-list.png" alt="Properties listing grid" /></td>
+    <td width="50%"><img src="./docs/screenshots/home1.png" alt="Hero with city + area search" /></td>
+    <td width="50%"><img src="./docs/screenshots/home2.png" alt="Featured verified properties" /></td>
   </tr>
   <tr>
-    <td align="center"><b>Home</b> — city + area search hero</td>
-    <td align="center"><b>Browse</b> — filter, sort, grid + list views</td>
+    <td align="center"><b>Hero</b> — search by city, area, or landmark</td>
+    <td align="center"><b>Featured properties</b> — verified listings front and center</td>
   </tr>
   <tr>
-    <td width="50%"><img src="./docs/screenshots/property-detail.png" alt="Property detail page" /></td>
-    <td width="50%"><img src="./docs/screenshots/add-property.png" alt="Add property form" /></td>
+    <td width="50%"><img src="./docs/screenshots/home3.png" alt="How it works section" /></td>
+    <td width="50%"><img src="./docs/screenshots/home4.png" alt="Platform stats" /></td>
   </tr>
   <tr>
-    <td align="center"><b>Listing</b> — gallery, amenities, reviews</td>
-    <td align="center"><b>Add property</b> — image upload + amenity selector</td>
+    <td align="center"><b>How it works</b> — three-step renter journey</td>
+    <td align="center"><b>Platform stats</b> — verified listings, brokers, cities</td>
   </tr>
   <tr>
-    <td width="50%"><img src="./docs/screenshots/dashboard.png" alt="User dashboard" /></td>
-    <td width="50%"><img src="./docs/screenshots/admin.png" alt="Admin panel" /></td>
+    <td colspan="2"><img src="./docs/screenshots/home5.png" alt="Call to action and footer" /></td>
   </tr>
   <tr>
-    <td align="center"><b>Dashboard</b> — favorites, visits, notifications</td>
-    <td align="center"><b>Admin</b> — verification and report review</td>
+    <td colspan="2" align="center"><b>Call to action</b> — register or browse</td>
+  </tr>
+</table>
+
+### Sign up + role-based dashboards
+
+<table>
+  <tr>
+    <td width="50%"><img src="./docs/screenshots/signup.png" alt="Sign up page with role selection" /></td>
+    <td width="50%"><img src="./docs/screenshots/tenant_dashboard.png" alt="Tenant dashboard" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Sign up</b> — pick your role at registration</td>
+    <td align="center"><b>Tenant dashboard</b> — favorites, visits, notifications</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="./docs/screenshots/broker_dashboard.png" alt="Broker dashboard" /></td>
+    <td width="50%"><img src="./docs/screenshots/owner_dashboard.png" alt="Owner dashboard" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Broker dashboard</b> — manage listings + visit requests</td>
+    <td align="center"><b>Owner dashboard</b> — direct listings, no brokerage</td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="./docs/screenshots/broker_chat.png" alt="Real-time chat between renter and broker" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><b>Real-time chat</b> — Supabase Realtime between tenant and broker</td>
   </tr>
 </table>
 
