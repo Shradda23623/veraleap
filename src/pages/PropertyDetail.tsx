@@ -11,6 +11,7 @@ import ReviewForm from "@/components/ReviewForm";
 import ReportButton from "@/components/ReportButton";
 import PropertyImageGallery from "@/components/PropertyImageGallery";
 import RequestVisitDialog from "@/components/RequestVisitDialog";
+import TrustScoreBadge from "@/components/TrustScoreBadge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSEO } from "@/hooks/useSEO";
 import { useToast } from "@/hooks/use-toast";
@@ -167,6 +168,9 @@ const PropertyDetail = () => {
               <p className="text-muted-foreground flex items-center gap-1.5">
                 <MapPin className="w-4 h-4" /> {property.location}, {property.city}
               </p>
+              <div className="mt-3">
+                <TrustScoreBadge propertyId={property.id} />
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
