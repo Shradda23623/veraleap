@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.4"
+    PostgrestVersion: "14.5"
   }
   public: {
     Tables: {
@@ -342,6 +342,98 @@ export type Database = {
         }
         Relationships: []
       }
+      trust_score_weights: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          is_active: boolean
+          notes: string | null
+          version: number
+          weight_behavior: number
+          weight_price: number
+          weight_reports: number
+          weight_reviews: number
+          weight_verification: number
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          version: number
+          weight_behavior?: number
+          weight_price?: number
+          weight_reports?: number
+          weight_reviews?: number
+          weight_verification?: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          version?: number
+          weight_behavior?: number
+          weight_price?: number
+          weight_reports?: number
+          weight_reviews?: number
+          weight_verification?: number
+        }
+        Relationships: []
+      }
+      trust_scores: {
+        Row: {
+          computed_at: string
+          factors: Json
+          property_id: string
+          score: number
+          weights_version: number
+        }
+        Insert: {
+          computed_at?: string
+          factors: Json
+          property_id: string
+          score: number
+          weights_version: number
+        }
+        Update: {
+          computed_at?: string
+          factors?: Json
+          property_id?: string
+          score?: number
+          weights_version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trust_scores_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: true
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
       visits: {
         Row: {
           created_at: string
@@ -389,36 +481,19 @@ export type Database = {
           },
         ]
       }
-      user_roles: {
-        Row: {
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      calculate_trust_score: { Args: { _property_id: string }; Returns: Json }
       create_notification: {
         Args: {
-          _user_id: string
+          _body?: string
           _kind: Database["public"]["Enums"]["notification_kind"]
+          _link?: string
           _title: string
-          _body?: string | null
-          _link?: string | null
+          _user_id: string
         }
         Returns: string
       }
@@ -433,6 +508,11 @@ export type Database = {
         }
         Returns: boolean
       }
+      recalc_trust_for_broker: {
+        Args: { _broker_id: string }
+        Returns: undefined
+      }
+      refresh_trust_score: { Args: { _property_id: string }; Returns: Json }
     }
     Enums: {
       app_role: "tenant" | "broker" | "owner" | "admin"
@@ -591,7 +671,13 @@ export const Constants = {
       ],
       report_status: ["pending", "resolved", "dismissed"],
       report_target: ["property", "broker", "review"],
-      visit_status: ["pending", "approved", "declined", "cancelled", "completed"],
+      visit_status: [
+        "pending",
+        "approved",
+        "declined",
+        "cancelled",
+        "completed",
+      ],
     },
   },
 } as const
