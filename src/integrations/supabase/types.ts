@@ -342,6 +342,21 @@ export type Database = {
         }
         Relationships: []
       }
+      sentiment_lexicon: {
+        Row: {
+          score: number
+          word: string
+        }
+        Insert: {
+          score: number
+          word: string
+        }
+        Update: {
+          score?: number
+          word?: string
+        }
+        Relationships: []
+      }
       trust_score_weights: {
         Row: {
           created_at: string
@@ -487,6 +502,7 @@ export type Database = {
     }
     Functions: {
       calculate_trust_score: { Args: { _property_id: string }; Returns: Json }
+      compute_review_sentiment: { Args: { _text: string }; Returns: number }
       create_notification: {
         Args: {
           _body?: string
@@ -496,6 +512,18 @@ export type Database = {
           _user_id: string
         }
         Returns: string
+      }
+      detect_templated_reviews: {
+        Args: {
+          _similarity_threshold?: number
+          _target_id: string
+          _target_type: string
+        }
+        Returns: {
+          review_id_a: string
+          review_id_b: string
+          similarity: number
+        }[]
       }
       get_user_role: {
         Args: { _user_id: string }
