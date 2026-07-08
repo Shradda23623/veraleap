@@ -10,7 +10,7 @@ const FACTOR_LABELS: Record<keyof TrustScoreFactors, string> = {
   price: "Price vs. comparable listings",
 };
 
-function scoreTier(score: number) {
+export function scoreTier(score: number) {
   if (score >= 75) return { label: "Trusted", color: "bg-green-600/10 text-green-700 border-green-600/20", Icon: ShieldCheck };
   if (score >= 50) return { label: "Caution", color: "bg-amber-500/10 text-amber-700 border-amber-500/20", Icon: ShieldQuestion };
   return { label: "High risk", color: "bg-destructive/10 text-destructive border-destructive/20", Icon: ShieldAlert };
